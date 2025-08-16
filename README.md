@@ -97,34 +97,37 @@ classifier.fit(X_train, Y_train)
 # 📌 Step 10: Model Evaluation
 # ===========================================
 # Accuracy on training data
+```python
 X_train_prediction = classifier.predict(X_train)
 training_data_accuracy = accuracy_score(X_train_prediction, Y_train)
 print("Training Accuracy:", training_data_accuracy)
-
+```
 # Accuracy on testing data
+```python
 X_test_prediction = classifier.predict(X_test)
 test_data_accuracy = accuracy_score(X_test_prediction, Y_test)
 print("Testing Accuracy:", test_data_accuracy)
-
+```
 # ===========================================
 # 📌 Step 11: Single Prediction Example
 # ===========================================
 input_data = (1, 1, 1, 1, 0, 4583, 1508.0, 128.0, 360.0, 1.0, 0)
 
 # Convert input data to numpy array
+```python
 input_array = np.asarray(input_data).reshape(1, -1)
 
 prediction = classifier.predict(input_array)
 
 if prediction[0] == 1:
-    print("✅ Person got loan")
+    print("Person got loan")
 else:
-    print("❌ Loan Not Approved")
+    print("Loan Not Approved")
+```
 
+**Training Accuracy: ~79.86%**
 
-Training Accuracy: ~79.86%
-
-Testing Accuracy: ~83.33%
+**Testing Accuracy: ~83.33%**
 
 ✅ The model generalizes well with minimal overfitting.
 
@@ -140,9 +143,10 @@ input_array = np.asarray(input_data)
 ```
 
 # reshaping data
+```python
 reshaped_data = input_array.reshape(1, -1)
 result = classifier.predict(reshaped_data)
-```python
+
 if result[0] == 1:
     print("Person got loan")
 else:
