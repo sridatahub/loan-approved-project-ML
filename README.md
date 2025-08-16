@@ -131,22 +131,23 @@ Testing Accuracy: ~83.33%
 🧮 Step 14: Making a Prediction
 We predict loan approval for a single applicant.
 
-python
-Copy
-Edit
+```python
+
 import numpy as np
 
 input_data = (1, 1, 1, 1, 0, 4583, 1508.0, 128.0, 360.0, 1.0, 0)
 input_array = np.asarray(input_data)
+```
 
 # reshaping data
 reshaped_data = input_array.reshape(1, -1)
 result = classifier.predict(reshaped_data)
-
+```python
 if result[0] == 1:
     print("Person got loan")
 else:
     print("Loan Not Approved")
+```
 Output:
 Person got loan
 🏁 Conclusion
