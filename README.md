@@ -16,6 +16,7 @@ The dataset contains **614 rows** and **13 columns** with information like appli
 # ===========================================
 # 📌 Step 1: Import Required Libraries
 # ===========================================
+```python
 import pandas as pd
 import numpy as np
 import seaborn as sns
@@ -23,49 +24,59 @@ import matplotlib.pyplot as plt
 from sklearn.model_selection import train_test_split
 from sklearn import svm
 from sklearn.metrics import accuracy_score
-
+```
 # ===========================================
 # 📌 Step 2: Load Dataset
 # ===========================================
+```python
 loan_dataset = pd.read_csv("loan_dataset.csv")
-
+```
 # Display first 5 rows
+```python
 print(loan_dataset.head())
-
+```
 # Shape of dataset
+```python
 print("Dataset Shape:", loan_dataset.shape)
-
+```
 # Statistical summary
+```python
 print(loan_dataset.describe())
-
+```
 # ===========================================
 # 📌 Step 3: Missing Values
 # ===========================================
+```python
 print("Missing values per column:\n", loan_dataset.isnull().sum())
-
+```
 # Drop rows with missing values
+```python
 loan_dataset = loan_dataset.dropna()
-
+```
 # ===========================================
 # 📌 Step 4: Encode Target Column
 # ===========================================
+```python
 loan_dataset.replace({"Loan_Status": {'N': 0, 'Y': 1}}, inplace=True)
-
+```
 # Replace '3+' in Dependents with 4
+```python
 loan_dataset = loan_dataset.replace(to_replace='3+', value=4)
-
+```
 # ===========================================
 # 📌 Step 5: Data Visualization
 # ===========================================
+```python
 sns.countplot(x='Education', hue='Loan_Status', data=loan_dataset)
 plt.show()
 
 sns.countplot(x='Married', hue='Loan_Status', data=loan_dataset)
 plt.show()
-
+```
 # ===========================================
 # 📌 Step 6: Encode Categorical Columns
 # ===========================================
+```python
 loan_dataset.replace({
     'Married': {'No': 0, 'Yes': 1},
     'Gender': {'Male': 1, 'Female': 0},
@@ -73,26 +84,29 @@ loan_dataset.replace({
     'Property_Area': {'Rural': 0, 'Semiurban': 1, 'Urban': 2},
     'Education': {'Graduate': 1, 'Not Graduate': 0}
 }, inplace=True)
-
+```
 # ===========================================
 # 📌 Step 7: Feature & Target Separation
 # ===========================================
+```python
 X = loan_dataset.drop(columns=['Loan_ID', 'Loan_Status'], axis=1)
 Y = loan_dataset['Loan_Status']
-
+```
 # ===========================================
 # 📌 Step 8: Train-Test Split
 # ===========================================
+```python
 X_train, X_test, Y_train, Y_test = train_test_split(
     X, Y, test_size=0.1, stratify=Y, random_state=2
 )
-
+```
 # ===========================================
 # 📌 Step 9: Train SVM Model
 # ===========================================
+```python
 classifier = svm.SVC(kernel='linear')
 classifier.fit(X_train, Y_train)
-
+```
 # ===========================================
 # 📌 Step 10: Model Evaluation
 # ===========================================
@@ -114,50 +128,23 @@ print("Testing Accuracy:", test_data_accuracy)
 input_data = (1, 1, 1, 1, 0, 4583, 1508.0, 128.0, 360.0, 1.0, 0)
 
 # Convert input data to numpy array
-```python
 input_array = np.asarray(input_data).reshape(1, -1)
 
+# Make prediction
+```python
 prediction = classifier.predict(input_array)
 
 if prediction[0] == 1:
     print("Person got loan")
 else:
     print("Loan Not Approved")
+
 ```
 
-**Training Accuracy: ~79.86%**
-
-**Testing Accuracy: ~83.33%**
-
-✅ The model generalizes well with minimal overfitting.
-
-🧮 Step 14: Making a Prediction
-We predict loan approval for a single applicant.
-
-```python
-
-import numpy as np
-
-input_data = (1, 1, 1, 1, 0, 4583, 1508.0, 128.0, 360.0, 1.0, 0)
-input_array = np.asarray(input_data)
-```
-
-# reshaping data
-```python
-reshaped_data = input_array.reshape(1, -1)
-result = classifier.predict(reshaped_data)
-
-if result[0] == 1:
-    print("Person got loan")
-else:
-    print("Loan Not Approved")
-```
-Output:
-Person got loan
 🏁 Conclusion
-This SVM-based model can predict loan approvals with ~83% accuracy.
+This SVM-based model can predict loan approvals with **~83%** accuracy.
 
-Key influencing factors:
+**Key influencing factors:**
 
 Credit History
 
