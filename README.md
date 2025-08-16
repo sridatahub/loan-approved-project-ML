@@ -20,14 +20,13 @@ We start by loading the dataset and viewing the first few entries.
 ```python
 # printing the first 5 rows of the dataframe
 loan_dataset.head()
-📏 Step 2: Shape of the Dataset
+##📏 **Step 2: Shape of the Dataset**
 We check how many rows and columns the dataset contains.
-
+```
 python
-Copy
-Edit
 # number of rows and columns
 loan_dataset.shape
+```
 Output: (614, 13) → 614 rows, 13 columns
 
 📊 Step 3: Statistical Summary
